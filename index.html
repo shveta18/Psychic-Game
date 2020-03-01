@@ -33,15 +33,7 @@
         var userGuess = [];
 
         document.onkeyup = function (event) {
-
-
-            // store what the user user picked in userPick variable
-            //var userPick = event.key
-            // var userPick = String.fromCharCode(event.keycode).tolowercase();
-            //console.log("User Guess is" + " " + userPick);
-
             //As long as the user has 9 tries left, continue to push the values the user entered into the array
-
             if (guessesLeft > 0) {
                 //determines which letter the computer chose
                 var compPick = letterChoices[Math.floor(Math.random() * letterChoices.length)];
@@ -62,20 +54,18 @@
                 //if the user pick doesn't match computer entry.  
                 else {
                     console.log("the users guess did not match, here is what you chose: " + userGuess);
-                    // push the value of the userPick variable to the array of userGudess
+                    // push the value of the userPick variable to the array of userGuess and decrease the guesses left counter by 1
                     userGuess.push(userPick);
                     console.log(userGuess);
                     guessesLeft--;
-                    var triesLeft = guessesLeft;
-                    console.log("the values of tries left has been set to" + guessesLeft);
                     console.log("the guesses left are: " + guessesLeft);
-
-                        if (triesLeft === 0) {
-                            console.log("does ths work?");
-                            userGuess.length = 0;
-                            console.log("reset the user key array");
-                            guessesLeft = 9;
-                            console.log("guesses have been reset after 9 tries. Game begins again");
+                    // the code below is for when the user has reached the max tries, the game should reset. 
+                    if (guessesLeft === 0) {
+                        console.log("does ths work?");
+                        userGuess.length = 0;
+                        console.log("reset the user key array");
+                        guessesLeft = 9;
+                        console.log("guesses have been reset after 9 tries. Game begins again");
                     };
                 };
 
