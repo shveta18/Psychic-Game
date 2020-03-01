@@ -1,114 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Psychic Game</title>
     <!-- link to bootstrap -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
 </head>
+
 <body>
     <h1>The Psychic Game</h1>
     <div id="game">
-        <p>Guess what letter I am thinking of?</p></div>
+        <p>Guess what letter I am thinking of?</p>
+    </div>
     <div id="wins">Wins:</div>
     <div id="losses">Losses:</div>
     <div id="guesses-left">Guesses Left:</div>
     <div id="userGuess">Your Guesses so far:</div>
-    
+
     <script type="text/javascript">
 
-    var letterChoices = ["a","b","c","d","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
-    
-    // initializing the variables for the start of a game
-    var wins = 0;
-    var losses = 0;
-    var guessesLeft = 9;
-    //user gudesses to be stored in an array to be displayed later
-    var userGuess = [];
-    
-    document.onkeyup = function(event) {
+        var letterChoices = ["a", "b", "c", "d", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+
+        // initializing the variables for the start of a game
+        var wins = 0;
+        var losses = 0;
+        var guessesLeft = 9;
+        //user gudesses to be stored in an array to be displayed later
+        var userGuess = [];
+
+        document.onkeyup = function (event) {
+
+
+            // store what the user user picked in userPick variable
+            //var userPick = event.key
+            // var userPick = String.fromCharCode(event.keycode).tolowercase();
+            //console.log("User Guess is" + " " + userPick);
+
+            //As long as the user has 9 tries left, continue to push the values the user entered into the array
+
+            if (guessesLeft > 0) {
                 //determines which letter the computer chose
-                var compPick = letterChoices[Math.floor(Math.random()*letterChoices.length)];
+                var compPick = letterChoices[Math.floor(Math.random() * letterChoices.length)];
                 console.log("Computer chose" + " " + compPick);
+                var userPick = event.key
+                console.log("User Guess is" + " " + userPick);
 
-                // store what the user user picked in userPick variable
-                //var userPick = event.key
-                // var userPick = String.fromCharCode(event.keycode).tolowercase();
-                //console.log("User Guess is" + " " + userPick);
+                // within this if statement if the user pick matches computer pick, add 1 to the win, and reset the guesses left back to 9
+                if (userPick === compPick) {
+                    console.log("MATCHED!!! MATTCHED MATCHEDDDDD!!!");
+                    wins++;
+                    guessesLeft = 9;
+                    // if the user wins, reset the user entry array to empty
+                        userGuess.length = 0;
+                        console.log("are we emptying the array??????");
+                    
 
-                //As long as the user has 9 tries left, continue to push the values the user entered into the array
-                for(i=9; i>0;i--){
-                if (guessesLeft > 0) {
-                    var userPick = event.key 
-                    console.log("User Guess is" + " " + userPick);
-                // push the value of the userPick variable to the array of userGudess
-                    userGuess.push(userPick); 
-                    // within this if statement if the user pick matches computer pick, add 1 to the win, and reset the guesses left back to 9
-                        if(userPick===compPick){
-                            wins++;
-                            guessesLeft = 9;
-                            // if the user wins, reset the user entry array to empty
-                            function empty(){
-                                userGuess.length = 0;
-                            }
-
-                        }
-                    //if the user pick doesn't match computer entry, 
-                        else if (userPick !=compPick){
-                            console.log(userGuess);
-                            guessesLeft--;
-                            console.log("the guesses left are: " + guessesLeft);
-                                if (guessesLeft = 0){
-                                    losses++;
-                                    console.log("you have lost" + losses);
-                                    guessesLeft = 9;
-                                    console.log("after losses, guesses reset to" + guessesLeft);
-                            }
-                        }
                 }
-
+                //if the user pick doesn't match computer entry, 
+                else if (userPick != compPick) {
+                    console.log("the users guess did not match, here is what you chose: " + userGuess);
+                    // push the value of the userPick variable to the array of userGudess
+                    userGuess.push(userPick);
+                    console.log(userGuess);
+                    guessesLeft--;
+                    console.log("the guesses left are: " + guessesLeft);
                 };
+                    
+                };
+
+                
+            };
+
         
-            
 
-            //for (var i = 1; i<10; i++){
-            
-                
-            
-/* 
-                if (userPick === compPick){
-                console.log("you win");
-                wins++;
-                console.log("the wins are" +wins);
-                tries++;
-                console.log("the tries are: " + tries);
-                    if (tries = 9){
 
-                    }
-                
-                
-                }
-                else if (userGuess != compChoice){
-                    console.log("you loose");
-                    losses++;
-                    console.log("the losses are" + losses);
 
-                 }
 
-                    guessesLeft = 9 - i;
-                    console.log("the guesses left are:" + guessesLeft);
-                    tries = i;
-                    console.log("the tries left are:" + tries); */
-
-                //wins.textContent = wins;
-                //losses.textContent = losses;
-            // guessesLeft.textContent = guessesLeft;
-            
-           // };
-    };
-    
 
 
 
@@ -116,6 +87,7 @@
 
 
     </script>
-    
+
 </body>
+
 </html>
