@@ -16,10 +16,10 @@
     <div id="game">
         <p>Guess what letter I am thinking of?</p>
     </div>
-    <div id="wins">Wins:</div>
-    <div id="losses">Losses:</div>
-    <div id="guesses-left">Guesses Left:</div>
-    <div id="userGuess">Your Guesses so far:</div>
+    <div>Wins:<span id="wins">0</span></div>
+    <div>Losses:<span id="losses">0</span></div>
+    <div>Guesses Left:<span id="guesses-left">9</span></div>
+    <div >Your Guesses so far:<span id="Guesses"></span></div>
 
     <script type="text/javascript">
 
@@ -43,12 +43,14 @@
 
                 // within this if statement if the user pick matches computer pick, add 1 to the win, and reset the guesses left back to 9
                 if (userPick === compPick) {
-                    console.log("MATCHED!!! MATTCHED MATCHEDDDDD!!!");
+                    console.log("MATCHED!!! MATTCHED!! MATCHEDDDDD!!!");
                     wins++;
                     guessesLeft = 9;
                     // if the user wins, reset the user entry array to empty
                     userGuess.length = 0;
                     console.log("Emptied the array to start over");
+                    //display the total wins without resetting
+                    document.getElementById("wins").innerHTML = wins;
 
                 }
                 //if the user pick doesn't match computer entry.  
@@ -56,14 +58,19 @@
                     console.log("the users guess did not match, here is what you chose: " + userGuess);
                     // push the value of the userPick variable to the array of userGuess and decrease the guesses left counter by 1
                     userGuess.push(userPick);
+                    //display the values selected by the user
+                    document.getElementById("Guesses").innerHTML = userGuess;
                     console.log(userGuess);
                     guessesLeft--;
+                    document.getElementById("guesses-left").innerHTML = guessesLeft;
                     console.log("the guesses left are: " + guessesLeft);
                     // the code below is for when the user has reached the max tries, the game should reset. 
                     if (guessesLeft === 0) {
                         console.log("does ths work?");
                         userGuess.length = 0;
                         console.log("reset the user key array");
+                        losses++;
+                        document.getElementById("losses").innerHTML = losses;
                         guessesLeft = 9;
                         console.log("guesses have been reset after 9 tries. Game begins again");
                     };
