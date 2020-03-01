@@ -9,9 +9,56 @@
     
 </head>
 <body>
+    <h1>The Psychic Game</h1>
+    <p>Guess what letter I am thinking of?</p>
+    <div id="wins">Wins:</div>
+    <div id="losses">Losses:</div>
+    <div id="guesses-left">Guesses Left:</div>
+    <div id="tries">Your Guesses so far:</div>
+    <div id="userGuess">You guessed:</div>
+    <div id="compChoice">Computer Chose:</div>
     <script type="text/javascript">
 
+    var letterChoices = ["a","b","c","d","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
     
+    var wins = document.getElementById("wins");
+    var losses = document.getElementById("losses");
+    var guessesLeft = document.getElementById("guesses-left");
+    var tries = document.getElementById("tries");
+    // this function is run whenever a key is pressed
+    document.onkeyup = function(event) {
+    
+    //determines which key was pressed
+    var userGuess = event.key
+    console.log("User Guess is" + " " + userGuess);
+    
+    //determines which letter the computer chose
+    var compChoice = letterChoices[Math.floor(Math.random()*letterChoices.length)];
+    console.log("Computer chose" + " " + compChoice);
+
+    for (var i = 0; i<9; i++){
+        if (userGuess === compChoice){
+        alert("You win!");
+
+        userGuess.textContent = "You chose: " + userGuess;
+        compChoice.textContent = "Comporter chose: "+ compChoice;
+    }
+        else if (userGuess === compChoice){
+            alert("You loose!");
+            userGuess.textContent = "You chose: " + userGuess;
+            compChoice.textContent = "Comporter chose: "+ compChoice;
+
+    }
+    
+    
+    };
+    };
+    
+
+
+
+
+
 
     </script>
     
