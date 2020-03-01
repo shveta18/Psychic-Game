@@ -55,27 +55,37 @@
                     wins++;
                     guessesLeft = 9;
                     // if the user wins, reset the user entry array to empty
-                        userGuess.length = 0;
-                        console.log("are we emptying the array??????");
-                    
+                    userGuess.length = 0;
+                    console.log("Emptied the array to start over");
 
                 }
-                //if the user pick doesn't match computer entry, 
-                else if (userPick != compPick) {
+                //if the user pick doesn't match computer entry.  
+                else {
                     console.log("the users guess did not match, here is what you chose: " + userGuess);
                     // push the value of the userPick variable to the array of userGudess
                     userGuess.push(userPick);
                     console.log(userGuess);
                     guessesLeft--;
+                    var triesLeft = guessesLeft;
+                    console.log("the values of tries left has been set to" + guessesLeft);
                     console.log("the guesses left are: " + guessesLeft);
-                };
-                    
+
+                        if (triesLeft === 0) {
+                            console.log("does ths work?");
+                            userGuess.length = 0;
+                            console.log("reset the user key array");
+                            guessesLeft = 9;
+                            console.log("guesses have been reset after 9 tries. Game begins again");
+                    };
                 };
 
-                
             };
 
-        
+
+
+        };
+
+
 
 
 
